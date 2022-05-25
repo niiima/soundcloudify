@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import db from './data/playlist.json';
 import { Playlist } from './components/Playlist';
 function App() {
