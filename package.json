@@ -1,6 +1,6 @@
 {
-  "name": "ts-rc-18",
-  "version": "0.1.0",
+  "name": "react-soundcloud-playlist",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
