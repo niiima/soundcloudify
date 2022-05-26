@@ -1,16 +1,31 @@
-import { PropsWithChildren } from "react";
-export type ReactChildrenType = PropsWithChildren<{ array: any, size?: any, color?: any }>;
+import { PropsWithChildren, useRef } from "react";
+export type ReactChildrenType = PropsWithChildren<{
+    array: any,
+    size?: any,
+    color?: any,
+    setPlayUrl: React.Dispatch<React.SetStateAction<string>>
+}>;
 export const Playlist = (props: ReactChildrenType) => {
-    // var size = '100px';
-    //const render = (size:string, color:string) => {
-    return (<section className="overflow-hidden', 'screen-x-full text-gray-700">
+    //const songRef = useRef({});
+
+    return (<section className=" text-gray-700">
         <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-22">
             <div className="flex flex-wrap -m-1 md:-m-2">
 
                 {[...props.array].map((item: any) => {
                     return <div key={item.title} className="flex flex-wrap w-1/3">
                         <div className="w-full h-48 p-1 md:p-2 ">
-                            <a href={`https://soundcloud.com${item.address}`} rel="noreferrer" target="_blank">
+                            <a
+                                href={`https://soundcloud.com${item.address}`}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    e.preventDefault()
+                                    // console.log(songRef.current.getAttribute('href'))
+                                    props.setPlayUrl(`https://soundcloud.com${item.address}`)
+                                }}
+                            // rel="noreferrer"
+                            // target="_blank"
+                            >
                                 <span
                                     className="block object-cover object-center w-full h-full rounded-lg"
                                     style={{

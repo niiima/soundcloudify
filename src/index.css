@@ -13,3 +13,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.player-wrapper {
+  position: fixed;
+  margin-top: 300px;
+  right: 0px;
+  padding-top: 56.25%; /* 720 / 1280 = 0.5625 */
+}
+
+.react-player {
+  transition: height 2s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
