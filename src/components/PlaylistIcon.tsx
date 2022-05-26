@@ -1,11 +1,9 @@
-import React from 'react'
-
 type Props = { color: string, size: string }
 
 export const PlaylistIcon = (props: Props) => {
         return (
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                        width={props.size} height={props.size} viewBox="0 0 120 120" enable-background="new 0 0 120 120" >
+                        width={props.size} height={props.size} viewBox="0 0 120 120" enableBackground="new 0 0 120 120" >
                         <g>
                                 <path fill={props.color} d="M102.036,70.633c-13.124-5.649-31.536-0.402-41.461,8.331c-5.893,5.185-11.869,12.797-10.624,21.142
 		c1.052,7.069,6.79,11.661,13.239,13.758c13.192,4.293,30.861,0.137,39.946-10.554c8.095-9.53,6.499-23.038,6.84-34.716
