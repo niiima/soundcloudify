@@ -1,10 +1,11 @@
-import { PropsWithChildren, useRef } from "react";
+import { PropsWithChildren } from "react";
 import { PlaylistItem } from '../global/Types';
 export type ReactChildrenType = PropsWithChildren<{
     array: any,
     size?: any,
     color?: any,
     setPlayUrl: React.Dispatch<React.SetStateAction<PlaylistItem | any>>
+    playing: boolean
 }>;
 export const Playlist = (props: ReactChildrenType) => {
 
