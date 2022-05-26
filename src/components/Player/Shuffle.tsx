@@ -1,12 +1,52 @@
 import React from 'react'
 
-type Props = { color: string, size: string, hovered: boolean }
+type Props = { color: string, size: string, hovered: boolean, isShuffle: boolean }
 
 const Shuffle = (props: Props) => {
-    const { color } = props
+    const { color, isShuffle, size } = props
     return (
         <div>
-            <svg className="transition-colors" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width={size} height={size}
+                viewBox="0 0 39.989 39.989" enableBackground="new 0 0 39.989 39.989" >
+                <path fill={isShuffle ? color : "pink"} id="XMLID_198_" d="M19.995,0C8.952,0,0,8.952,0,19.995c0,11.043,8.952,19.994,19.995,19.994s19.994-8.952,19.994-19.994
+	C39.989,8.952,31.037,0,19.995,0z M30.79,15.841h-1.572c-0.153,3.048-1.781,5.71-4.191,7.282c2.533,1.651,4.215,4.504,4.215,7.747
+	c0,0.829-0.672,1.5-1.5,1.5s-1.5-0.671-1.5-1.5c0-3.445-2.803-6.247-6.247-6.247s-6.247,2.802-6.247,6.247
+	c0,0.829-0.672,1.5-1.5,1.5s-1.5-0.671-1.5-1.5c0-3.243,1.681-6.096,4.215-7.747c-2.41-1.571-4.038-4.233-4.191-7.282H9.199
+	c-0.555,0-0.902-0.601-0.624-1.081l3.048-5.28c0.277-0.481,0.971-0.481,1.249,0l3.048,5.28c0.277,0.481-0.069,1.081-0.624,1.081
+	h-1.525c0.24,3.227,2.936,5.782,6.224,5.782s5.984-2.554,6.224-5.782h-1.524c-0.555,0-0.902-0.601-0.624-1.081l3.048-5.28
+	c0.277-0.481,0.971-0.481,1.249,0l3.048,5.28C31.691,15.24,31.345,15.841,30.79,15.841z"/>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+                <g>
+                </g>
+            </svg>
+            {/* <svg className="transition-colors" version="1.1" xmlns="http://www.w3.org/2000/svg"
                 x="0px" y="0px"
                 viewBox="0 0 49.7 49.7"
                 width={props.size} height={props.size}
@@ -49,7 +89,7 @@ const Shuffle = (props: Props) => {
                 </g>
                 <g>
                 </g>
-            </svg>
+            </svg> */}
         </div>
     )
 }

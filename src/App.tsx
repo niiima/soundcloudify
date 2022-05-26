@@ -7,12 +7,13 @@ import { PlaylistIcon } from './components/PlaylistIcon';
 import Shuffle from './components/Player/Shuffle';
 import ReactTooltip from 'react-tooltip';
 import useHover from "@react-hook/hover";
-// import { PlayerController } from './components/Player/PlayerController';
+//import { PlayerController } from './components/Player/PlayerController';
 function App() {
 
   //const [scrollPosition, setScrollPosition] = useState(0);
   const [playlist, setPlaylist] = useState(db)
   const [playing, setPlaying] = useState(db[0]);
+  const [isShuffle, setIsShuffle] = useState(false)
   const HoverTarget = useRef(null);
   const Hovered = useHover(HoverTarget);
 
@@ -46,7 +47,7 @@ function App() {
       </main>
       <footer className="py-0 
       hover:bg-slate-500 
-      hover:text-yellow-600 
+      hover:text-white 
       transition-colors 
       text-yellow-200 
       bg-slate-700 
@@ -54,19 +55,26 @@ function App() {
       ">
         <span className='flex '>
           <PlaylistIcon color="#6589ab" size="26px" />
-          <span className='whitespace-nowrap'>{playing.address.split("/")[2].replace(/\-/g, " ")}</span>
-          {/* <span className="pt-1 inline-block pl-10"><PlayerController /></span> */}
+          <span className='whitespace-nowrap'>{playing.title}</span>
+          <span className="pt-1 inline-block pl-10">
+            {/* <PlayerController /> */}
+          </span>
           <span ref={HoverTarget} data-tip="Shuffle Playlist" className="pt-1" onClick={() => {
-            let shuffled = db
-              .map(value => ({ value, sort: Math.random() }))
-              .sort((a, b) => a.sort - b.sort)
-              .map(({ value }) => value);
-            setPlaylist(shuffled)
-            console.log(JSON.stringify(shuffled))
+            setIsShuffle(!isShuffle);
+            if (isShuffle) {
+              let shuffled = db
+                .map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value);
+              setPlaylist(shuffled);
+            }
+            else
+              setPlaylist(db)
           }} >
             <ReactTooltip />
             {"  "}
-            <Shuffle hovered={Hovered} color={Hovered ? "yellow" : "#f2f3f6"} size={"20px"}></Shuffle> </span>
+            <Shuffle hovered={Hovered} color={Hovered ? "yellow" : "lightblue"}
+              isShuffle={isShuffle} size={"18px"}></Shuffle> </span>
         </span>
       </footer>
     </div >
