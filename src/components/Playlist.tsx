@@ -1,30 +1,28 @@
 import { PropsWithChildren, useRef } from "react";
+import { PlaylistItem } from '../global/Types';
 export type ReactChildrenType = PropsWithChildren<{
     array: any,
     size?: any,
     color?: any,
-    setPlayUrl: React.Dispatch<React.SetStateAction<string>>
+    setPlayUrl: React.Dispatch<React.SetStateAction<PlaylistItem | any>>
 }>;
 export const Playlist = (props: ReactChildrenType) => {
-    //const songRef = useRef({});
 
     return (<section className=" text-gray-700">
         <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-22">
             <div className="flex flex-wrap -m-1 md:-m-2">
-
-                {[...props.array].map((item: any) => {
-                    return <div key={item.title} className="flex flex-wrap w-1/3">
+                {[...props.array].map((item: PlaylistItem) => {
+                    return <div key={item.title} className="flex flex-wrap w-1/3 lg:w-1/4">
                         <div className="w-full h-48 p-1 md:p-2 ">
                             <a
                                 href={`https://soundcloud.com${item.address}`}
                                 onClick={(e) => {
                                     e.stopPropagation()
                                     e.preventDefault()
-                                    // console.log(songRef.current.getAttribute('href'))
-                                    props.setPlayUrl(`https://soundcloud.com${item.address}`)
+                                    props.setPlayUrl(item)
                                 }}
-                            // rel="noreferrer"
-                            // target="_blank"
+                                rel="noreferrer"
+                                target="_blank"
                             >
                                 <span
                                     className="block object-cover object-center w-full h-full rounded-lg"
@@ -33,7 +31,7 @@ export const Playlist = (props: ReactChildrenType) => {
                                         backgroundPosition: "center",
                                         backgroundSize: props.size ? props.size : "200px"
                                     }}>
-                                    <span className="bg-${slate}-200/40 z-index-100 text-xs text-white">{item.title}</span>
+                                    <span className="bg-slate-200/40 z-index-100 text-xs text-white">{item.title}</span>
                                 </span>
                             </a>
                         </div>
@@ -44,12 +42,5 @@ export const Playlist = (props: ReactChildrenType) => {
         </div>
     </section >
     )
-
 };
-// window.addEventListener('resize', () => {
-//   console.log(window.innerWidth);
-//   if (window.innerWidth > 400) size = '400px';
-//   else size = '100px';
-//   render();
-// });
 
