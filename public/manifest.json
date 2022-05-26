@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "My Playlist",
+  "name": "Nima's Soundcloud playlist",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo512.png",
+      "src": "logo512.jpg",
       "type": "image/png",
       "sizes": "512x512"
     }
