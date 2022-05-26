@@ -5,6 +5,6 @@ type Props = {}
 
 export const PlayerController = (props: Props) => {
     return (
-        <div className='flex'> <PlayIcon /> <PauseIcon /><NextIcon /> </div>
+        <div className='flex'> <PlayIcon /> <PauseIcon /><NextIcon size="1em" /> </div>
     )
 }
