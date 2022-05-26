@@ -132,9 +132,9 @@ export const PauseIcon = () => (
     </svg>
 );
 
-type ShuffleProps = { color: string, size: string, isHover: boolean, isShuffle: boolean }
+type ShuffleProps = { size: string, isHover: boolean, isShuffle: boolean }
 export const Shuffle = (props: ShuffleProps) => {
-    const { color, isShuffle, size } = props;
+    const { isShuffle, size } = props;
     // useEffect(() => {
 
     // }, [isShuffle])
@@ -143,7 +143,7 @@ export const Shuffle = (props: ShuffleProps) => {
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 width={size} height={size}
                 viewBox="0 0 39.989 39.989" enableBackground="new 0 0 39.989 39.989" >
-                <path fill={isShuffle ? color : "pink"} d="M19.995,0C8.952,0,0,8.952,0,19.995c0,11.043,8.952,19.994,19.995,19.994s19.994-8.952,19.994-19.994
+                <path fill={isShuffle ? "#523691" : "pink"} d="M19.995,0C8.952,0,0,8.952,0,19.995c0,11.043,8.952,19.994,19.995,19.994s19.994-8.952,19.994-19.994
 	C39.989,8.952,31.037,0,19.995,0z M30.79,15.841h-1.572c-0.153,3.048-1.781,5.71-4.191,7.282c2.533,1.651,4.215,4.504,4.215,7.747
 	c0,0.829-0.672,1.5-1.5,1.5s-1.5-0.671-1.5-1.5c0-3.445-2.803-6.247-6.247-6.247s-6.247,2.802-6.247,6.247
 	c0,0.829-0.672,1.5-1.5,1.5s-1.5-0.671-1.5-1.5c0-3.243,1.681-6.096,4.215-7.747c-2.41-1.571-4.038-4.233-4.191-7.282H9.199

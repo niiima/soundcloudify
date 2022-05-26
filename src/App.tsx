@@ -14,7 +14,7 @@ function App() {
   //const [scrollPosition, setScrollPosition] = useState(0);
   const [playlist, setPlaylist] = useState(db)
   const [playing, setPlaying] = useState(db[0]);
-  const [isShuffle, setIsShuffle] = useState(true)
+  const [isShuffle, setIsShuffle] = useState(false)
   const ShuffleHoverTarget = useRef(null);
   const ShuffleHovered = useHover(ShuffleHoverTarget);
 
@@ -63,7 +63,7 @@ function App() {
           <span ref={NextHoverTarget} data-tip="Next" className="pt-1 inline-block pl-10"
             onClick={() => {
               let index = playlist.indexOf(playing);
-              if (index >= playlist.length)
+              if (index === playlist.length - 1)
                 setPlaying(playlist[0])
               else
                 setPlaying(playlist[index + 1])
@@ -72,10 +72,10 @@ function App() {
             <NextIcon isHover={NextHovered} size="18px" />
             <ReactTooltip />
           </span>
-          <span ref={ShuffleHoverTarget} data-tip="Shuffle Playlist" className="pt-1"
+          <span ref={ShuffleHoverTarget} data-tip={`${isShuffle ? "Un-shuffle" : "Shuffle"} Playlist`} className="pt-1"
             onClick={() => {
               console.log(isShuffle)
-              setIsShuffle(isShuffle => !isShuffle);
+              setIsShuffle(!isShuffle);
               if (isShuffle) {
                 let shuffled = db
                   .map(value => ({ value, sort: Math.random() }))
@@ -88,7 +88,7 @@ function App() {
             }} >
             <ReactTooltip />
             {"  "}
-            <Shuffle isHover={ShuffleHovered} color={ShuffleHovered ? "yellow" : "lightblue"}
+            <Shuffle isHover={ShuffleHovered}
               isShuffle={isShuffle} size={"18px"}></Shuffle> </span>
         </span>
       </footer>
