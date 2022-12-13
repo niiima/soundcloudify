@@ -22,7 +22,7 @@ function App() {
   const NextHovered = useHover(NextHoverTarget);
 
   useEffect(() => {
-    console.log(playing)
+    //console.log(playing)
   }, [playing, playlist]);
 
   // const handleScroll = () => {
@@ -84,7 +84,7 @@ function App() {
           </span>
           <span ref={ShuffleHoverTarget} data-tip={`${isShuffle ? "Un-shuffle" : "Shuffle"} Playlist`} className="pt-1"
             onClick={() => {
-              console.log(isShuffle)
+              // console.log(isShuffle)
               setIsShuffle(!isShuffle);
               if (isShuffle) {
                 let shuffled = db

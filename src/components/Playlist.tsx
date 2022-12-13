@@ -9,7 +9,7 @@ export type ReactChildrenType = PropsWithChildren<{
     playing: boolean
 }>;
 export const Playlist = (props: ReactChildrenType) => {
-    console.log(props)
+    // console.log(props)
     return (<section className=" text-gray-700">
         <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-22">
             <div className="flex flex-wrap -m-1 md:-m-2">
