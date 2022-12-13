@@ -22,7 +22,7 @@ function App() {
   const NextHovered = useHover(NextHoverTarget);
 
   useEffect(() => {
-    //console.log(playing)
+    console.log(playing)
   }, [playing, playlist]);
 
   // const handleScroll = () => {
@@ -42,7 +42,17 @@ function App() {
     <div className="flex flex-col h-screen bg-stale-800">
       <header className={`py-0 bg-gray-700 text-white text-center`}
       >
-        <ReactPlayer url={BASE_PLATFORM_URL + playing.address}
+        <ReactPlayer
+          url={BASE_PLATFORM_URL + playing.address}
+          playing={true}
+          onEnded={() => {
+            //console.log("onEnded", playing);
+            let index = playlist.indexOf(playing);
+            if (index === playlist.length - 1)
+              setPlaying(playlist[0])
+            else
+              setPlaying(playlist[index + 1]);
+          }}
           width='100%' height='100%'
         />
       </header>
