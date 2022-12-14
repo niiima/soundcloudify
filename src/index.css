@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+    color: gold;
+    background-color: red;
+}
+
 #sidebar {
     --tw-translate-x: -100%;
 }

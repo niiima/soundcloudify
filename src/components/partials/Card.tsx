@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 import { PlaylistItem } from '../../global/Types';
 export type ReactChildrenType = PropsWithChildren<{
     item: PlaylistItem,
-    array: any,
+    playlist: any,
     size?: any,
     color?: any,
     setPlayUrl: React.Dispatch<React.SetStateAction<PlaylistItem | any>>
@@ -29,7 +29,7 @@ const Card = (props: ReactChildrenType) => {
                         backgroundPosition: "center",
                         backgroundSize: props.size ? props.size : "200px"
                     }}>
-                    <span className="bg-slate-200/40 z-index-100 text-xs text-white">{item.title}</span>
+                    <span className="bg-slate-200/40 z-index-100 text-xs text-white text-center">{item.title}</span>
                 </span>
             </a>
         </div>
