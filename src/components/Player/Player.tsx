@@ -11,8 +11,6 @@ type ReactChildrenType = PropsWithChildren<{
   playing: boolean
 }>;
 
-
-
 export const Player = (props: ReactChildrenType) => {
   const { array, size, color, setPlayUrl, playing } = props;
 
