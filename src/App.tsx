@@ -7,9 +7,19 @@ import { PlaylistIcon } from './components/PlaylistIcon';
 // import Shuffle from './components/Player/Shuffle';
 import ReactTooltip from 'react-tooltip';
 import useHover from "@react-hook/hover";
-import { NextIcon, Shuffle } from './components/Player/Icons'
+import { NextIcon, Shuffle } from './components/Player/Icons';
 //import { PlayerController } from './components/Player/PlayerController';
-import PlayListItems from './components/Player/PlayListItems'
+import PlayListItems from './components/Player/PlayListItems';
+
+const _SETTINGS = {
+  headerResizeBreakpoint: "260px",
+  headerStretchedHeight: "360px",
+  headerMinimizedHeight: "60px",
+  headerDefaultHeight: "200px",
+  headerResizeScrollBreakpoint: 260,
+  playerIconSize: "20px"
+};
+
 function App() {
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -27,6 +37,7 @@ function App() {
   const headerElementReference = useRef<HTMLDivElement>(null)
   const headerElementHovered = useHover(headerElementReference)
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(true);
+  const [headerClicked, setHeaderClicked] = useState(false);
 
   const handleNext = () => {
     let index = playlist.indexOf(playing);
@@ -43,14 +54,16 @@ function App() {
     };
   }, []);
 
+
+
   useEffect(() => {
     if (headerElementReference.current && headerElementReference.current.style) {
-      if (scrollPosition > 260 && isHeaderExpanded === true) {
-        headerElementReference.current.style.height = "60px";
+      if (scrollPosition > _SETTINGS.headerResizeScrollBreakpoint && isHeaderExpanded === true) {
+        headerElementReference.current.style.height = _SETTINGS.headerMinimizedHeight;
         setIsHeaderExpanded(false);
       }
-      else if (scrollPosition < 260 && isHeaderExpanded === false) {
-        headerElementReference.current.style.height = "200px";
+      else if (scrollPosition < _SETTINGS.headerResizeScrollBreakpoint && isHeaderExpanded === false) {
+        headerElementReference.current.style.height = _SETTINGS.headerDefaultHeight;
         setIsHeaderExpanded(true);
       }
     }
@@ -64,26 +77,38 @@ function App() {
       setScrollPosition(position);
   };
 
-  useEffect(() => {
+  const handleHeaderResize = () => {
     if (headerElementReference)
       if (headerElementReference.current) {
-        // console.log(headerElementHovered)
-        if (headerElementHovered)
-          headerElementReference.current.style.height = "200px"
+        if (headerElementHovered || headerClicked)
+          headerElementReference.current.style.height = _SETTINGS.headerStretchedHeight
         else
-          if (scrollPosition > 250) headerElementReference.current.style.height = "60px"
+          if (scrollPosition > _SETTINGS.headerResizeScrollBreakpoint) headerElementReference.current.style.height = _SETTINGS.headerMinimizedHeight
+          else if (scrollPosition < _SETTINGS.headerResizeScrollBreakpoint) headerElementReference.current.style.height = _SETTINGS.headerDefaultHeight
       }
+  }
+
+  useEffect(() => {
+    handleHeaderResize();
   }, [headerElementHovered])
+
+  useEffect(() => {
+    handleHeaderResize();
+  }, [headerClicked])
 
   return (
     // <div className="flex flex-col h-screen bg-stale-800">
     <>
-      <header ref={headerElementReference} className="transition-all sticky bg-gray-600 text-gray-100 
+      <header ref={headerElementReference}
+        onClick={() => {
+          if (headerClicked !== true)
+            setHeaderClicked(true)
+        }} className="transition-all sticky bg-gray-600 text-gray-100 
       flex flex-col top-0 z-30 w-full h-26" data-dev-hint="mobile menu bar">
         <ReactPlayer
           // ref={player}
           url={BASE_PLATFORM_URL + playing.address}
-          playing={true} // psy remove for production
+          playing={true}
           onEnded={() => {
             //console.log("onEnded", playing);
             handleNext();
@@ -125,7 +150,7 @@ function App() {
                     handleNext()
                   }}>
                   {/* <PlayerController /> */}
-                  <NextIcon isHover={NextHovered} size="18px" />
+                  <NextIcon isHover={NextHovered} size={_SETTINGS.playerIconSize} />
                   <ReactTooltip />
                 </span>
                 <span ref={ShuffleHoverTarget} data-tip={`${isShuffle ? "Un-shuffle" : "Shuffle"} Playlist`} className="pt-1"
@@ -144,7 +169,7 @@ function App() {
                   <ReactTooltip />
                   {"  "}
                   <Shuffle isHover={ShuffleHovered}
-                    isShuffle={isShuffle} size={"18px"}></Shuffle> </span>
+                    isShuffle={isShuffle} size={_SETTINGS.playerIconSize}></Shuffle> </span>
               </span>
               <PlayListItems playlist={playlist} playing={playing} />
             </nav>

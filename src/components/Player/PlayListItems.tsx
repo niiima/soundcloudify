@@ -6,8 +6,8 @@ type Props = { playlist: any, playing: any }
 
 const PlayListItems = (props: Props) => {
     return (
-        props.playlist.map((item: TPlaylistItem, i: number) => <span key={i}
-            className="flex text-xxs	items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white group">
+        props.playlist.map((item: TPlaylistItem, i: number) => <span key={item.title}
+            className="flex text-xxx items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white group">
             {/* <img src={PlayLogo} alt="" width="10" className='' /> */}
             <PlayLogoIcon isPlaying={props.playing.title === item.title ? true : false} size={10} />
             {/* <span
