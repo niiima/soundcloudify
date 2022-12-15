@@ -146,7 +146,7 @@ function App() {
                   <Shuffle isHover={ShuffleHovered}
                     isShuffle={isShuffle} size={"18px"}></Shuffle> </span>
               </span>
-              <PlayListItems playlist={playlist} />
+              <PlayListItems playlist={playlist} playing={playing} />
             </nav>
           </div>
 
