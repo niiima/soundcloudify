@@ -1,33 +1,25 @@
 import { useEffect, useState, useRef, createRef } from 'react';
+
+import useHover from "@react-hook/hover";
 import db from './data/playlist.json';
 import { Playlist } from './components/Playlist';
 import ReactPlayer from 'react-player'
-import { BASE_PLATFORM_URL } from './global/constants';
 import { PlaylistIcon } from './components/PlaylistIcon';
-// import Shuffle from './components/Player/Shuffle';
 import ReactTooltip from 'react-tooltip';
-import useHover from "@react-hook/hover";
+
 import { NextIcon, Shuffle } from './components/Player/Icons';
-//import { PlayerController } from './components/Player/PlayerController';
 import PlayListItems from './components/Player/PlayListItems';
 import ArrowDown from './assets/arrowDown.svg';
-const _SETTINGS = {
-  headerResizeBreakpoint: "260px",
-  headerStretchedHeight: "360px",
-  headerMinimizedHeight: "60px",
-  headerDefaultHeight: "200px",
-  headerResizeScrollBreakpoint: 260,
-  playerIconSize: "20px"
-};
+import MusicWave from './assets/musicWave.svg';
+import { BASE_PLATFORM_URL, _SETTINGS } from './global/constants';
 
 function App() {
-
   const [scrollPosition, setScrollPosition] = useState(0);
   //const player = useRef(Readonly<ReactPlayerProps>);
   const [playlist, setPlaylist] = useState(db)
   const [playing, setPlaying] = useState(db[0]);
 
-  const [isShuffle, setIsShuffle] = useState(true)
+  const [isShuffle, setIsShuffle] = useState(true);
   const ShuffleHoverTarget = useRef(null);
   const ShuffleHovered = useHover(ShuffleHoverTarget);
 
@@ -46,6 +38,7 @@ function App() {
     else
       setPlaying(playlist[index + 1])
   }
+
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -121,15 +114,22 @@ function App() {
 
 
       </header>
-      <div className="content-center sticky transition-all bg-red-600 bg-gray-600 text-gray-100 
-      flex flex-col z-10 top-0 z-10 w-full h-10" onClick={() => {
+
+      <div className="content-center sticky transition-all bg-gray-600 text-gray-100 
+      flex items-stretch content-around z-10 top-0 z-10 w-full h-10"
+
+        style={{ backgroundColor: _SETTINGS.primaryColor }} >
+        <img src={ArrowDown} className="flex"
+          alt="Expand player" width="40px" />
+
+        <img onClick={() => {
           // debugger
           setHeaderClicked(!headerClicked);
           // console.log(headerClicked)
-        }} >
-        <img src={ArrowDown} className="flex text-center" alt="Expand player" width="40px" /></div>
-      <div className="relative min-h-screen md:flex" data-dev-hint="container">
+        }} src={MusicWave} alt="wave" className="self-stretch " />
+      </div>
 
+      <div className="relative min-h-screen md:flex" data-dev-hint="container">
         <aside id="sidebar" className=" overflow-y-auto 
         bg-gray-800 text-gray-100 md:w-64 w-3/4 space-y-6 pt-6 px-0 
         absolute inset-y-0 left-0 transform md:relative md:translate-x-0 
