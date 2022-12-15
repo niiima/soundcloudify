@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { PlaylistItem } from '../../global/Types';
+import { TPlaylistItem } from '../../global/Types';
 import { PropsWithChildren } from "react";
 import ReactPlayer from 'react-player';
 import ReactChildrenType from '../../App'
@@ -7,7 +7,7 @@ type ReactChildrenType = PropsWithChildren<{
   array: any,
   size?: any,
   color?: any,
-  setPlayUrl: React.Dispatch<React.SetStateAction<PlaylistItem | any>>
+  setPlayUrl: React.Dispatch<React.SetStateAction<TPlaylistItem | any>>
   playing: boolean
 }>;
 

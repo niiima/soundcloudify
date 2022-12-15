@@ -1,11 +1,11 @@
 import { PropsWithChildren } from "react";
-import { PlaylistItem } from '../../global/Types';
+import { TPlaylistItem } from '../../global/Types';
 export type ReactChildrenType = PropsWithChildren<{
-    item: PlaylistItem,
+    item: TPlaylistItem,
     playlist: any,
     size?: any,
     color?: any,
-    setPlayUrl: React.Dispatch<React.SetStateAction<PlaylistItem | any>>
+    setPlayUrl: React.Dispatch<React.SetStateAction<TPlaylistItem | any>>
     playing: boolean
 }>;
 const Card = (props: ReactChildrenType) => {

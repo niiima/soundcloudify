@@ -1,11 +1,11 @@
 import React from 'react'
-import { PlaylistItem } from '../../global/Types';
+import { TPlaylistItem } from '../../global/Types';
 
 type Props = { playlist: any, }
 
 const PlayListItems = (props: Props) => {
     return (
-        props.playlist.map((item: PlaylistItem, i: number) => <span
+        props.playlist.map((item: TPlaylistItem, i: number) => <span
             className="flex text-xxs	items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white group">
             <span
                 className="w-4 h-4 flex-shrink-0 border border-gray-600 rounded group-hover:border-gray-400 
