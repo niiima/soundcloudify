@@ -10,7 +10,7 @@ import useHover from "@react-hook/hover";
 import { NextIcon, Shuffle } from './components/Player/Icons';
 //import { PlayerController } from './components/Player/PlayerController';
 import PlayListItems from './components/Player/PlayListItems';
-
+import ArrowDown from './assets/arrowDown.svg';
 const _SETTINGS = {
   headerResizeBreakpoint: "260px",
   headerStretchedHeight: "360px",
@@ -54,8 +54,6 @@ function App() {
     };
   }, []);
 
-
-
   useEffect(() => {
     if (headerElementReference.current && headerElementReference.current.style) {
       if (scrollPosition > _SETTINGS.headerResizeScrollBreakpoint && isHeaderExpanded === true) {
@@ -69,7 +67,6 @@ function App() {
     }
   }, [scrollPosition]);
 
-
   const handleScroll = () => {
     const position = window.pageYOffset;
     // console.log(position)
@@ -80,11 +77,11 @@ function App() {
   const handleHeaderResize = () => {
     if (headerElementReference)
       if (headerElementReference.current) {
-        if (headerElementHovered || headerClicked)
+        if (headerElementHovered) //psy 
           headerElementReference.current.style.height = _SETTINGS.headerStretchedHeight
         else
           if (scrollPosition > _SETTINGS.headerResizeScrollBreakpoint) headerElementReference.current.style.height = _SETTINGS.headerMinimizedHeight
-          else if (scrollPosition < _SETTINGS.headerResizeScrollBreakpoint) headerElementReference.current.style.height = _SETTINGS.headerDefaultHeight
+          else if (scrollPosition <= _SETTINGS.headerResizeScrollBreakpoint) headerElementReference.current.style.height = _SETTINGS.headerDefaultHeight
       }
   }
 
@@ -93,6 +90,7 @@ function App() {
   }, [headerElementHovered])
 
   useEffect(() => {
+
     handleHeaderResize();
   }, [headerClicked])
 
@@ -100,11 +98,14 @@ function App() {
     // <div className="flex flex-col h-screen bg-stale-800">
     <>
       <header ref={headerElementReference}
-        onClick={() => {
-          if (headerClicked !== true)
-            setHeaderClicked(true)
-        }} className="transition-all sticky bg-gray-600 text-gray-100 
+        // onClick={(e) => {
+        //   e.stopPropagation();
+        //   setHeaderClicked(!headerClicked);
+        //   console.log(headerClicked);
+        // }}
+        className="transition-all sticky bg-gray-600 text-gray-100 
       flex flex-col top-0 z-30 w-full h-26" data-dev-hint="mobile menu bar">
+
         <ReactPlayer
           // ref={player}
           url={BASE_PLATFORM_URL + playing.address}
@@ -117,7 +118,16 @@ function App() {
           onPause={() => console.log("onPause")}
           width='100%' height='100%'
         />
+
+
       </header>
+      <div className="content-center sticky transition-all bg-red-600 bg-gray-600 text-gray-100 
+      flex flex-col z-10 top-0 z-10 w-full h-10" onClick={() => {
+          // debugger
+          setHeaderClicked(!headerClicked);
+          // console.log(headerClicked)
+        }} >
+        <img src={ArrowDown} className="flex text-center" alt="Expand player" width="40px" /></div>
       <div className="relative min-h-screen md:flex" data-dev-hint="container">
 
         <aside id="sidebar" className=" overflow-y-auto 
