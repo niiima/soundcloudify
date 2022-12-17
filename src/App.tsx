@@ -107,8 +107,8 @@ function App() {
             //console.log("onEnded", playing);
             handleNext();
           }}
-          onPlay={() => console.log("onPlay")}
-          onPause={() => console.log("onPause")}
+          // onPlay={() => console.log("onPlay")}
+          // onPause={() => console.log("onPause")}
           width='100%' height='100%'
         />
 
@@ -119,8 +119,8 @@ function App() {
       flex items-stretch content-around z-10 top-0 z-10 w-full h-10"
 
         style={{ backgroundColor: _SETTINGS.primaryColor }} >
-        <img src={ArrowDown} className="flex"
-          alt="Expand player" width="40px" />
+        {/* <img src={ArrowDown} className="flex"
+          alt="Expand player" width="40px" /> */}
 
         <img onClick={() => {
           // debugger
